@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ticketingsite-51ccd": {
+      "hosting": {
+        "TicketingSite": [
+          "ticketingsite-51ccd"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ticketingsite-51ccd"
+  }
+}

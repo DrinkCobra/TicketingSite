@@ -1,0 +1,17 @@
+.action-item{
+    margin-left: .5em;
+    cursor: pointer;
+}
+.modal-container{
+    display: grid;
+    width: 400px;
+    max-width: 400px;
+    padding: 10px 0px 50px 0px;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: gray;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    box-shadow: 0 0 5px rgb(0, 0, 0, 0.27);
+}

@@ -1,0 +1,27 @@
+<button class="btnAdd" (click)=onCreateTaskClick() mat-flat-button color="warn" id="post-button">Post<mat-icon >add</mat-icon></button>
+<div class="col-md-9">
+    <div cdkDropListGroup>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="example-container">
+                    <h2>To do</h2>
+                    <div
+                      cdkDropList
+                      #todoList="cdkDropList"
+                      [cdkDropListData]="data"
+                      class="example-list"
+                      (cdkDropListDropped)="drop($event)">
+                      <div class="example-box" *ngFor="let item of data" cdkDrag>{{item.status}}</div>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-md-4">
+                
+            </div>
+            <div class="col-md-4">
+                
+            </div>
+        </div>
+    </div>
+</div>
+  
