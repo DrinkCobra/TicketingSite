@@ -5,9 +5,7 @@ import { Router } from '@angular/router';
 import { FirebaseTSFirestore, OrderBy, Limit } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 import { CreateTaskComponent } from '../create-task/create-task.component';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { FormControl } from '@angular/forms';
 import { AuthService } from '../../auth.service';
-import { stringLength } from '@firebase/util';
 
 @Component({
   selector: 'app-dashboard',
@@ -92,7 +90,6 @@ export class DashboardComponent implements OnInit {
           );
         },
         onFail: err => {
-
         }
       }
     );
