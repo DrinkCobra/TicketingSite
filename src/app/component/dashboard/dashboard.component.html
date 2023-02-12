@@ -1,42 +1,28 @@
-<!-- <button class="btnAdd" (click)=onCreateTaskClick() mat-flat-button color="warn" id="post-button">Post<mat-icon >add</mat-icon></button> -->
-<nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand mx-2">Ticketing Site</a>
-    <form class="form-inline">
-      <button class="btn btn-outline-success my-2 my-sm-0 me-2" type="submit" (click)=onCreateTaskClick()>Create</button>
-      <button class="btn btn-outline-danger my-2 my-sm-0 me-2" type="submit" (click)=onLogoutClick()>Logout</button>
+<nav class="navbar navbar-light bg-info text-white">
+    <a class="navbar-brand mx-5 text-white fw-bold">Ticketing Site</a>
+    <form class="form-inline mx-4">
+      <button class="btn btn-success my-2 my-sm-0 me-2" type="submit" (click)=onCreateTaskClick()>Create</button>
+      <button class="btn btn-danger my-2 my-sm-0 me-2" type="submit" (click)=logout()>Logout</button>
     </form>
-  </nav>
-<div class="col-md-9">
+</nav>
+<div class="cols">
     <div cdkDropListGroup>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md">
                 <div class="example-container">
                     <h2>To do</h2>
                     <div
+                      id="To Do"
                       cdkDropList
                       #todoList="cdkDropList"
-                      [cdkDropListData]="data"
+                      [cdkDropListData]="toDo"
                       class="example-list"
                       (cdkDropListDropped)="drop($event)">
-                      <div class="example-box" cdkDrag>
-
-                    </div>
-                    </div>
-                  </div>
-            </div>
-            <div class="col-md-4">
-                <div class="example-container">
-                    <h2>In Progress</h2>
-                    <div
-                      cdkDropList
-                      #todoList="cdkDropList"
-                      [cdkDropListData]="data"
-                      class="example-list"
-                      (cdkDropListDropped)="drop($event)">
-                      <div class="example-box" *ngFor="let item of data" cdkDrag>
+                      <div class="example-box" *ngFor="let item of toDo" cdkDrag>
                         <mat-card>
                             <mat-card-header>
                                 <mat-card-title>{{item.taskName}}</mat-card-title>
+                                <mat-card-subtitle>{{item.taskId}}</mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
                                 {{item.taskStatus}}
@@ -48,9 +34,266 @@
                     </div>
                   </div>
             </div>
-            <div class="col-md-4">
-                
+            <div class="col-md">
+                <div class="example-container">
+                    <h2>In Progress</h2>
+                    <div
+                      id="In Progress"
+                      cdkDropList
+                      #todoList="cdkDropList"
+                      [cdkDropListData]="inProg"
+                      class="example-list"
+                      (cdkDropListDropped)="drop($event)">
+                      <div class="example-box" *ngFor="let item of inProg" cdkDrag>
+                        <mat-card>
+                            <mat-card-header>
+                                <mat-card-title>{{item.taskName}}</mat-card-title>
+                                <mat-card-subtitle>{{item.taskId}}</mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                {{item.taskStatus}}
+                            </mat-card-content>
+                            <mat-card-actions>
+                            </mat-card-actions>
+                        </mat-card>
+                      </div>
+                    </div>
+                  </div>
             </div>
+            <div class="col-md">
+              <div class="example-container">
+                  <h2>Reopen</h2>
+                  <div
+                    id="Reopen"
+                    cdkDropList
+                    #todoList="cdkDropList"
+                    [cdkDropListData]="reOpen"
+                    class="example-list"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let item of reOpen" cdkDrag>
+                      <mat-card>
+                          <mat-card-header>
+                              <mat-card-title>{{item.taskName}}</mat-card-title>
+                              <mat-card-subtitle>{{item.taskId}}</mat-card-subtitle>
+                          </mat-card-header>
+                          <mat-card-content>
+                              {{item.taskStatus}}
+                          </mat-card-content>
+                          <mat-card-actions>
+                          </mat-card-actions>
+                      </mat-card>
+                    </div>
+                  </div>
+                </div>
+          </div>
+          <div class="col-md">
+            <div class="example-container">
+                <h2>Resolved</h2>
+                <div
+                  id="Resolve"
+                  cdkDropList
+                  #todoList="cdkDropList"
+                  [cdkDropListData]="reSolve"
+                  class="example-list"
+                  (cdkDropListDropped)="drop($event)">
+                  <div class="example-box" *ngFor="let item of reSolve" cdkDrag>
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>{{item.taskName}}</mat-card-title>
+                            <mat-card-subtitle>{{item.taskId}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            {{item.taskStatus}}
+                        </mat-card-content>
+                        <mat-card-actions>
+                        </mat-card-actions>
+                    </mat-card>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col-md">
+            <div class="example-container">
+                <h2>Hold Passed</h2>
+                <div
+                  id="Hold Passed"
+                  cdkDropList
+                  #todoList="cdkDropList"
+                  [cdkDropListData]="holdPass"
+                  class="example-list"
+                  (cdkDropListDropped)="drop($event)">
+                  <div class="example-box" *ngFor="let item of holdPass" cdkDrag>
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>{{item.taskName}}</mat-card-title>
+                            <mat-card-subtitle>{{item.taskId}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            {{item.taskStatus}}
+                        </mat-card-content>
+                        <mat-card-actions>
+                        </mat-card-actions>
+                    </mat-card>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col-md">
+            <div class="example-container">
+                <h2>Blocked Testing</h2>
+                <div
+                  id="Blocked Testing"
+                  cdkDropList
+                  #todoList="cdkDropList"
+                  [cdkDropListData]="blockTest"
+                  class="example-list"
+                  (cdkDropListDropped)="drop($event)">
+                  <div class="example-box" *ngFor="let item of blockTest" cdkDrag>
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>{{item.taskName}}</mat-card-title>
+                            <mat-card-subtitle>{{item.taskId}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            {{item.taskStatus}}
+                        </mat-card-content>
+                        <mat-card-actions>
+                        </mat-card-actions>
+                    </mat-card>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col-md">
+            <div class="example-container">
+                <h2>Ready For Testing</h2>
+                <div
+                  id="Ready for Testing"
+                  cdkDropList
+                  #todoList="cdkDropList"
+                  [cdkDropListData]="readyTest"
+                  class="example-list"
+                  (cdkDropListDropped)="drop($event)">
+                  <div class="example-box" *ngFor="let item of readyTest" cdkDrag>
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>{{item.taskName}}</mat-card-title>
+                            <mat-card-subtitle>{{item.taskId}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            {{item.taskStatus}}
+                        </mat-card-content>
+                        <mat-card-actions>
+                        </mat-card-actions>
+                    </mat-card>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col-md">
+            <div class="example-container">
+                <h2>Test in Progress</h2>
+                <div
+                  id="Test in Progress"
+                  cdkDropList
+                  #todoList="cdkDropList"
+                  [cdkDropListData]="testProg"
+                  class="example-list"
+                  (cdkDropListDropped)="drop($event)">
+                  <div class="example-box" *ngFor="let item of testProg" cdkDrag>
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>{{item.taskName}}</mat-card-title>
+                            <mat-card-subtitle>{{item.taskId}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            {{item.taskStatus}}
+                        </mat-card-content>
+                        <mat-card-actions>
+                        </mat-card-actions>
+                    </mat-card>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col-md">
+            <div class="example-container">
+                <h2>Ready for Production</h2>
+                <div
+                  id="Ready for Production"
+                  cdkDropList
+                  #todoList="cdkDropList"
+                  [cdkDropListData]="readyProd"
+                  class="example-list"
+                  (cdkDropListDropped)="drop($event)">
+                  <div class="example-box" *ngFor="let item of readyProd" cdkDrag>
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>{{item.taskName}}</mat-card-title>
+                            <mat-card-subtitle>{{item.taskId}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            {{item.taskStatus}}
+                        </mat-card-content>
+                        <mat-card-actions>
+                        </mat-card-actions>
+                    </mat-card>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col-md">
+            <div class="example-container">
+                <h2>Rollback</h2>
+                <div
+                  id="Rollback"
+                  cdkDropList
+                  #todoList="cdkDropList"
+                  [cdkDropListData]="rollBack"
+                  class="example-list"
+                  (cdkDropListDropped)="drop($event)">
+                  <div class="example-box" *ngFor="let item of rollBack" cdkDrag>
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>{{item.taskName}}</mat-card-title>
+                            <mat-card-subtitle>{{item.taskId}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            {{item.taskStatus}}
+                        </mat-card-content>
+                        <mat-card-actions>
+                        </mat-card-actions>
+                    </mat-card>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col-md">
+            <div class="example-container">
+                <h2>Deployed</h2>
+                <div
+                  id="Deployed"
+                  cdkDropList
+                  #todoList="cdkDropList"
+                  [cdkDropListData]="deployed"
+                  class="example-list"
+                  (cdkDropListDropped)="drop($event)">
+                  <div class="example-box" *ngFor="let item of deployed" cdkDrag>
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>{{item.taskName}}</mat-card-title>
+                            <mat-card-subtitle>{{item.taskId}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            {{item.taskStatus}}
+                        </mat-card-content>
+                        <mat-card-actions>
+                        </mat-card-actions>
+                    </mat-card>
+                  </div>
+                </div>
+              </div>
+        </div>
         </div>
     </div>
 </div>

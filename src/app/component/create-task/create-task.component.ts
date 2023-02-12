@@ -19,6 +19,7 @@ export class CreateTaskComponent implements OnInit {
     let status = taskStatus.value;
     this.router.navigateByUrl('/dashboard');
     this.firestore = new FirebaseTSFirestore();
+    let genId = this.firestore.genDocId();
     this.firestore.create(
       {
         path: ['TaskCollection'],

@@ -1,9 +1,18 @@
+nav div{
+  width: 97%;
+  margin: 0 auto;
+}
+.cols{
+  width: 97%;
+  margin: 0 auto;
+}
 .example-container {
-    width: 400px;
+    width: 150px;
     max-width: 100%;
-    margin: 0 25px 25px 0;
     display: inline-block;
     vertical-align: top;
+    margin-left: 5px;
+    margin-right: 5px;
   }
   
   .example-list {
@@ -28,7 +37,11 @@
     background: white;
     font-size: 14px;
   }
-  
+  .col-md .example-container h2{
+    font-size: 15px;
+    text-align: center;
+    margin-top: 15px;
+  }
   .cdk-drag-preview {
     box-sizing: border-box;
     border-radius: 4px;
