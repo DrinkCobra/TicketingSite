@@ -6,27 +6,39 @@ nav div{
   width: 97%;
   margin: 0 auto;
 }
+mat-card-title{
+  font-weight: bold;
+}
+mat-card-subtitle{
+  color: gray;
+  white-space: nowrap;
+}
 .example-container {
-    width: 150px;
-    max-width: 100%;
+    margin-top: 30px;
+    padding: 0px;
     display: inline-block;
     vertical-align: top;
-    margin-left: 5px;
-    margin-right: 5px;
+    border-radius: 4px;
+    background-position-y: bottom;
+    height: 85vh;
   }
-  
   .example-list {
     border: solid 1px #ccc;
+    width: 100px;
+    height: 95%;
+    padding: 0px 10px 0px 10px;
     min-height: 60px;
-    background: white;
+    background: #0dcaf071;
+    outline: 2px;
     border-radius: 4px;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     display: block;
   }
   
   .example-box {
-    padding: 20px 10px;
     border-bottom: solid 1px #ccc;
+    max-height: 120px;
     color: rgba(0, 0, 0, 0.87);
     display: flex;
     flex-direction: row;
@@ -35,10 +47,14 @@ nav div{
     box-sizing: border-box;
     cursor: move;
     background: white;
-    font-size: 14px;
+    border-radius: 4px;
+    margin-top: 10px;
+    font-size: 10px;
+    text-align: center;
+    justify-content: center;
   }
   .col-md .example-container h2{
-    font-size: 15px;
+    font-size: 8px;
     text-align: center;
     margin-top: 15px;
   }

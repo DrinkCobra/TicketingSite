@@ -26,7 +26,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore/'; 
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
 
 
 @NgModule({
@@ -35,8 +35,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
-    CreateTaskComponent
-  ],
+    CreateTaskComponent,
+],
   imports: [
     BrowserModule,
     AppRoutingModule,

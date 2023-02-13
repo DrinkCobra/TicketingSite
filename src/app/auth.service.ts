@@ -20,23 +20,24 @@ export class AuthService {
       }
     });
   }
+  ngOnInit(): void {
+  }
+  async login(email: string, password: string){
+    try {
+      const result = await this.afAuth
+        .signInWithEmailAndPassword(email, password);
+      this.ngZone.run(() => {
+        this.router.navigate(['dashboard']);
+      });
+      this.SetUserData(result.user);
+    } catch (error) {
+      window.alert(error.message);
+    }
+  }
   get isLoggedIn(): boolean {
     const user = JSON.stringify(localStorage.getItem('user')!);
-    console.log(user !== 'null' ? true : false)
     return user !== 'null' ? true : false;
-  }
-  login(email: string, password: string){
-    return this.afAuth
-      .signInWithEmailAndPassword(email, password)
-      .then((result) => {
-        this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
-        });
-        this.SetUserData(result.user);
-      })
-      .catch((error) => {
-        window.alert(error.message);
-      });
+    console.log(user);
   }
   register(email: string, password: string){
     return this.afAuth
@@ -48,11 +49,10 @@ export class AuthService {
         window.alert(error.message);
       });
   }
-  logout(){
-    return this.afAuth.signOut().then(() => {
-      localStorage.removeItem('user');
-      this.router.navigate(['login']);
-    });
+  async logout(){
+    await this.afAuth.signOut();
+    localStorage.removeItem('user');
+    this.router.navigate(['login']);
   }
   SetUserData(user: any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FirebaseTSApp } from 'firebasets/firebasetsApp/firebaseTSApp';
 import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-create-task',
@@ -13,13 +14,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CreateTaskComponent implements OnInit {
   todoForm! : FormGroup;
   private firestore: FirebaseTSFirestore;
+  private dashboard: DashboardComponent;
   onCreateClick(taskId: HTMLInputElement, taskName: HTMLInputElement, taskStatus: HTMLSelectElement){
     let id = taskId.value;
     let name = taskName.value;
     let status = taskStatus.value;
     this.router.navigateByUrl('/dashboard');
     this.firestore = new FirebaseTSFirestore();
-    let genId = this.firestore.genDocId();
     this.firestore.create(
       {
         path: ['TaskCollection'],
@@ -30,9 +31,9 @@ export class CreateTaskComponent implements OnInit {
           timestamp: FirebaseTSApp.getFirestoreTimestamp(),
         },
         onComplete: () => {
-          alert("Data recorded!");
           this.dialog.close();
           this.router.navigate(['/dashboard']);
+          window.location.reload();
         },
         onFail: (err) => {
           alert(err.message);

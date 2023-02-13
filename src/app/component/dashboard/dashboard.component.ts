@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
   constructor(private router: Router, private dialog: MatDialog, private afAuth: AngularFireAuth, private auth : AuthService){
   }
   ngOnInit(): void {
-    this.getPosts();
+    this.getTickets();
   }
   logout() {
     this.auth.logout();
@@ -36,13 +36,38 @@ export class DashboardComponent implements OnInit {
   onCreateTaskClick() {
     this.dialog.open(CreateTaskComponent);
   }
-  getPosts(){
+  clearArr(){
+    this.toDo = [];
+    this.inProg = [];
+    this.reOpen = [];
+    this.reSolve = [];
+    this.holdPass = [];
+    this.blockTest = [];
+    this.readyTest = [];
+    this.testProg = [];
+    this.readyProd = [];
+    this.rollBack = [];
+    this.deployed = [];
+  }
+  deleteTickets(id: string){
+    this.firestore.delete({
+      path: ['TaskCollection', id],
+      onComplete: () => {
+        this.clearArr();
+        this.getTickets();
+     },
+     onFail: err => {
+        alert(err.message);
+     }
+  
+    })
+  }
+  getTickets(){
     this.firestore.getCollection(
       {
         path: ['TaskCollection'],
         where: [
           new OrderBy('timestamp','desc'),
-          new Limit(20),
         ],
         onComplete:(result) => {
           result.docs.forEach(
@@ -59,7 +84,7 @@ export class DashboardComponent implements OnInit {
                 case 'Reopen':
                     this.reOpen.push(ticket);
                     break;
-                case 'Resolved':
+                case 'Resolve':
                     this.reSolve.push(ticket);
                     break;
                 case 'Hold Passed':
@@ -97,6 +122,8 @@ export class DashboardComponent implements OnInit {
   drop(event: CdkDragDrop<TicketData[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      console.log(event.currentIndex)
+
     } else {
       transferArrayItem(
         event.previousContainer.data,
@@ -104,7 +131,6 @@ export class DashboardComponent implements OnInit {
         event.previousIndex,
         event.currentIndex,
       );
-      console.log(event.container.data[event.currentIndex]['id'])
       this.firestore.update(
         {
           path: ['TaskCollection',event.container.data[event.currentIndex]['id']],

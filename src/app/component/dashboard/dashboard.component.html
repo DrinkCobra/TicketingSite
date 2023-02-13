@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-md">
                 <div class="example-container">
-                    <h2>To do</h2>
+                    <h2>To do: {{toDo.length}}</h2>
                     <div
                       id="To Do"
                       cdkDropList
@@ -25,7 +25,7 @@
                                 <mat-card-subtitle>{{item.taskId}}</mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                {{item.taskStatus}}
+                              <button style="font-size: 7px; padding: 4px;" class="btn btn-outline-danger" type="submit" (click)="deleteTickets(item.id)">Delete</button>
                             </mat-card-content>
                             <mat-card-actions>
                             </mat-card-actions>
@@ -36,7 +36,7 @@
             </div>
             <div class="col-md">
                 <div class="example-container">
-                    <h2>In Progress</h2>
+                    <h2>In Progress: {{inProg.length}}</h2>
                     <div
                       id="In Progress"
                       cdkDropList
@@ -51,7 +51,7 @@
                                 <mat-card-subtitle>{{item.taskId}}</mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                {{item.taskStatus}}
+                              <button style="font-size: 7px; padding: 4px;" class="btn btn-outline-danger" type="submit" (click)="deleteTickets(item.id)">Delete</button>
                             </mat-card-content>
                             <mat-card-actions>
                             </mat-card-actions>
@@ -62,7 +62,7 @@
             </div>
             <div class="col-md">
               <div class="example-container">
-                  <h2>Reopen</h2>
+                  <h2>Reopen: {{reOpen.length}}</h2>
                   <div
                     id="Reopen"
                     cdkDropList
@@ -77,7 +77,7 @@
                               <mat-card-subtitle>{{item.taskId}}</mat-card-subtitle>
                           </mat-card-header>
                           <mat-card-content>
-                              {{item.taskStatus}}
+                            <button style="font-size: 7px; padding: 4px;" class="btn btn-outline-danger" type="submit" (click)="deleteTickets(item.id)">Delete</button>
                           </mat-card-content>
                           <mat-card-actions>
                           </mat-card-actions>
@@ -88,7 +88,7 @@
           </div>
           <div class="col-md">
             <div class="example-container">
-                <h2>Resolved</h2>
+                <h2>Resolved: {{reSolve.length}}</h2>
                 <div
                   id="Resolve"
                   cdkDropList
@@ -103,7 +103,7 @@
                             <mat-card-subtitle>{{item.taskId}}</mat-card-subtitle>
                         </mat-card-header>
                         <mat-card-content>
-                            {{item.taskStatus}}
+                          <button style="font-size: 7px; padding: 4px;" class="btn btn-outline-danger" type="submit" (click)="deleteTickets(item.id)">Delete</button>
                         </mat-card-content>
                         <mat-card-actions>
                         </mat-card-actions>
@@ -114,7 +114,7 @@
         </div>
         <div class="col-md">
             <div class="example-container">
-                <h2>Hold Passed</h2>
+                <h2>Hold Passed: {{holdPass.length}}</h2>
                 <div
                   id="Hold Passed"
                   cdkDropList
@@ -129,7 +129,7 @@
                             <mat-card-subtitle>{{item.taskId}}</mat-card-subtitle>
                         </mat-card-header>
                         <mat-card-content>
-                            {{item.taskStatus}}
+                          <button style="font-size: 7px; padding: 4px;" class="btn btn-outline-danger" type="submit" (click)="deleteTickets(item.id)">Delete</button>
                         </mat-card-content>
                         <mat-card-actions>
                         </mat-card-actions>
@@ -140,7 +140,7 @@
         </div>
         <div class="col-md">
             <div class="example-container">
-                <h2>Blocked Testing</h2>
+                <h2>Blocked Testing: {{blockTest.length}}</h2>
                 <div
                   id="Blocked Testing"
                   cdkDropList
@@ -155,7 +155,7 @@
                             <mat-card-subtitle>{{item.taskId}}</mat-card-subtitle>
                         </mat-card-header>
                         <mat-card-content>
-                            {{item.taskStatus}}
+                          <button style="font-size: 7px; padding: 4px;" class="btn btn-outline-danger" type="submit" (click)="deleteTickets(item.id)">Delete</button>
                         </mat-card-content>
                         <mat-card-actions>
                         </mat-card-actions>
@@ -166,7 +166,7 @@
         </div>
         <div class="col-md">
             <div class="example-container">
-                <h2>Ready For Testing</h2>
+                <h2>Ready For Testing: {{readyTest.length}}</h2>
                 <div
                   id="Ready for Testing"
                   cdkDropList
@@ -181,7 +181,7 @@
                             <mat-card-subtitle>{{item.taskId}}</mat-card-subtitle>
                         </mat-card-header>
                         <mat-card-content>
-                            {{item.taskStatus}}
+                          <button style="font-size: 7px; padding: 4px;" class="btn btn-outline-danger" type="submit" (click)="deleteTickets(item.id)">Delete</button>
                         </mat-card-content>
                         <mat-card-actions>
                         </mat-card-actions>
@@ -192,7 +192,7 @@
         </div>
         <div class="col-md">
             <div class="example-container">
-                <h2>Test in Progress</h2>
+                <h2>Test in Progress: {{testProg.length}}</h2>
                 <div
                   id="Test in Progress"
                   cdkDropList
@@ -207,7 +207,7 @@
                             <mat-card-subtitle>{{item.taskId}}</mat-card-subtitle>
                         </mat-card-header>
                         <mat-card-content>
-                            {{item.taskStatus}}
+                          <button style="font-size: 7px; padding: 4px;" class="btn btn-outline-danger" type="submit" (click)="deleteTickets(item.id)">Delete</button>
                         </mat-card-content>
                         <mat-card-actions>
                         </mat-card-actions>
@@ -218,7 +218,7 @@
         </div>
         <div class="col-md">
             <div class="example-container">
-                <h2>Ready for Production</h2>
+                <h2>Ready for Production: {{readyProd.length}}</h2>
                 <div
                   id="Ready for Production"
                   cdkDropList
@@ -233,7 +233,7 @@
                             <mat-card-subtitle>{{item.taskId}}</mat-card-subtitle>
                         </mat-card-header>
                         <mat-card-content>
-                            {{item.taskStatus}}
+                          <button style="font-size: 7px; padding: 4px;" class="btn btn-outline-danger" type="submit" (click)="deleteTickets(item.id)">Delete</button>
                         </mat-card-content>
                         <mat-card-actions>
                         </mat-card-actions>
@@ -244,7 +244,7 @@
         </div>
         <div class="col-md">
             <div class="example-container">
-                <h2>Rollback</h2>
+                <h2>Rollback: {{rollBack.length}}</h2>
                 <div
                   id="Rollback"
                   cdkDropList
@@ -259,7 +259,7 @@
                             <mat-card-subtitle>{{item.taskId}}</mat-card-subtitle>
                         </mat-card-header>
                         <mat-card-content>
-                            {{item.taskStatus}}
+                          <button style="font-size: 7px; padding: 4px;" class="btn btn-outline-danger" type="submit" (click)="deleteTickets(item.id)">Delete</button>
                         </mat-card-content>
                         <mat-card-actions>
                         </mat-card-actions>
@@ -270,7 +270,7 @@
         </div>
         <div class="col-md">
             <div class="example-container">
-                <h2>Deployed</h2>
+                <h2>Deployed: {{deployed.length}}</h2>
                 <div
                   id="Deployed"
                   cdkDropList
@@ -285,7 +285,7 @@
                             <mat-card-subtitle>{{item.taskId}}</mat-card-subtitle>
                         </mat-card-header>
                         <mat-card-content>
-                            {{item.taskStatus}}
+                          <button style="font-size: 7px; padding: 4px;" class="btn btn-outline-danger" type="submit" (click)="deleteTickets(item.id)">Delete</button>
                         </mat-card-content>
                         <mat-card-actions>
                         </mat-card-actions>
